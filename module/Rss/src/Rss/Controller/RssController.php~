@@ -1,0 +1,38 @@
+<?php
+namespace Rss\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+protected $rssTable;
+
+class RssController extends AbstractActionController
+{
+    public function indexAction()
+    {
+	return new ViewModel(array(
+            'rssfeeds' => $this->getRssTable()->fetchAll(),
+        ));
+    }
+
+    public function addAction()
+    {
+    }
+
+    public function editAction()
+    {
+    }
+
+    public function deleteAction()
+    {
+    }
+
+    public function getRssTable()
+    {
+        if (!$this->rssTable) {
+            $sm = $this->getServiceLocator();
+            $this->rssTable = $sm->get('Rss\Model\RssTable');
+        }
+        return $this->rssTable;
+    }
+
+}

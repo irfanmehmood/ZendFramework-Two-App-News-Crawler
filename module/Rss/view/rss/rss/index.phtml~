@@ -1,0 +1,30 @@
+<?php
+// module/Rss/view/rss/rss/index.phtml:
+
+$title = 'Feeds';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('rss', array('action'=>'add'));?>">Add new rss</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Title</th>
+    <th>Name</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($rsss as $rss) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($rss->title);?></td>
+    <td><?php echo $this->escapeHtml($rss->name);?></td>
+    <td>
+        <a href="<?php echo $this->url('rss',
+            array('action'=>'edit', 'id' => $rss->id));?>">Edit</a>
+        <a href="<?php echo $this->url('rss',
+            array('action'=>'delete', 'id' => $rss->id));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
